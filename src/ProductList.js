@@ -27,6 +27,7 @@ const rows = [
   createData(4,'lysol', 6),
   createData(5,'mr. clean', 6),
   createData(6,'fita', 6),
+  
 ];
 
 export default function ProductList() {
