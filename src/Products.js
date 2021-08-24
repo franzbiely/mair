@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,21 +20,32 @@ const useStyles = makeStyles((theme) => ({
 function Products() {
     const classes = useStyles();
     return (
-            <Grid container spacing={12}>
-                <Grid container justifyContent="center" spacing={9}>
+                <Grid container justifyContent="center" spacing={1}>
                     <Grid item xs={2}>
-                             <Box mt={5} > Name: </Box> 
-                             <Box mt={5} > Quantity:  </Box>
-                             <Box mt={2}> <Button variant="contained" color="primary"> Add </Button> </Box>                      
+                    <Paper className={classes.paper}>
+                              
+                                Name: 
+                           
+                             <Box mt={5} >
+                                 Quantity:  
+                            </Box>
+                             <Box mt={2}>
+                                <Button type="submit" variant="contained" color="primary" className={classes.button}>
+                                    Add
+                                </Button> 
+                            </Box> 
+                            </Paper>                     
                     </Grid>
-                    <Grid item xs={2}>      
+                    <Grid item xs={2}>    
+                    <Paper className={classes.paper}>  
                         <form className={classes.root} noValidate autoComplete="off"> 
                             <TextField id="name" label="Product name"  />
-                            <TextField id="name" label="Product quantity"  type="number" />
-                        </form>                      
+                            <TextField id="quantity" label="Product quantity"  type="number" />
+                        </form>   
+                        </Paper>                     
                     </Grid>
                 </Grid>
-            </Grid>
+           
     )
 }
 export default Products;
