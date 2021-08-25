@@ -16,19 +16,11 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(id, name, quantity) {
+function product(id, name, quantity) {
   return { id, name, quantity };
 }
 
-const rows = [
-  createData( 1,'Grapes', 6),
-  createData(2,'apple', 6),
-  createData(3,'pineaple', 6),
-  createData(4,'lysol', 6),
-  createData(5,'mr. clean', 6),
-  createData(6,'fita', 6),
-  
-];
+const rows = JSON.parse(localStorage.getItem("Products"));
 
 export default function ProductList() {
   const classes = useStyles();
@@ -52,7 +44,7 @@ export default function ProductList() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {rows.map((row) => (
+                {rows?.map((row) => (
                     <TableRow key={row.id}>  
                         <TableCell component="th" scope="row">
                             <Box ml={10}> {row.id}  </Box>
