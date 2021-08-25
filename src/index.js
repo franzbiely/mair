@@ -7,21 +7,10 @@ import { ProductContext } from './ProductContext';
 
 
 
-const setProduct = (name, quantity) => {
-  const todos = JSON.parse(localStorage.getItem("Products"))
-  todos.push({name, quantity});
-  localStorage.setItem("Products", JSON.stringify(todos));
-}
 
-const providerValue = {
-  products : JSON.parse(localStorage.getItem("Products")),
-  setProducts : (name, quantity) => setProduct(name, quantity)
-}
 ReactDOM.render(
   <React.StrictMode>
-    <ProductContext.Provider value={providerValue} >
       <App /> 
-    </ProductContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
