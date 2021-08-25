@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
+import { ProductContext } from "./ProductContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,65 +21,63 @@ function Products() {
   const [name, setName] = useState(" ");
   const [quantity, setQuantity] = useState(" ");
 
-  const onSubmit = () => {
-    console.log(name, quantity);
+  const clearFields = () => {
     setName("");
     setQuantity("");
-    saveLocalTodos({ name, quantity });
-  };
-
-  const saveLocalTodos = (todo) => {
-    let todos;
-    if (localStorage.getItem("Products") === null) {
-      todos = [];
-    } else {
-      todos = JSON.parse(localStorage.getItem("Products"));
-    }
-
-    todos.push(todo);
-    localStorage.setItem("Products", JSON.stringify(todos));
   };
 
   const classes = useStyles();
   return (
-    <Grid container justifyContent="center" alignItems="flex-end" spacing={1}>
-      <Grid item xs={2}>
-        <Paper className={classes.paper}>
-          <Box mb={5}>Name:</Box>
-          <Box mt={5}>Quantity:</Box>
-          <Box mt={2}>
-            <Button
-              onClick={(e) => onSubmit(e.target.value)}
-              variant="contained"
-              color="primary"
-              className={classes.button}
-            >
-              Add
-            </Button>
-          </Box>
-        </Paper>
-      </Grid>
+    <ProductContext.Consumer>
+      {({products, setProducts}) => (
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="flex-end"
+          spacing={1}
+        >
+          <Grid item xs={2}>
+            <Paper className={classes.paper}>
+              <Box mb={5}>Name:</Box>
+              <Box mt={5}>Quantity:</Box>
+              <Box mt={2}>
+                <Button
+                  onClick={() => {
+                    setProducts(name, quantity)
+                    clearFields();  
+                  }}
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                >
+                  Add
+                </Button>
+              </Box>
+            </Paper>
+          </Grid>
 
-      <Grid container direction="row" item xs={2}>
-        <Paper className={classes.paper}>
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField
-              id="name"
-              label="Product name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <TextField
-              id="quantity"
-              label="Product quantity"
-              type="number"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-            />
-          </form>
-        </Paper>
-      </Grid>
-    </Grid>
+          <Grid container direction="row" item xs={2}>
+            <Paper className={classes.paper}>
+              <form className={classes.root} noValidate autoComplete="off">
+                <TextField
+                  id="name"
+                  label="Product name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <TextField
+                  id="quantity"
+                  label="Product quantity"
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+              </form>
+            </Paper>
+          </Grid>
+        </Grid>
+      )}
+    </ProductContext.Consumer>
   );
 }
 
