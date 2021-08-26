@@ -8,9 +8,9 @@ export default function Header() {
         <div>
 
           <Grid item xs={12}>
-            <di>    
+            <div>    
                 <h1>Products</h1>     
-            </di>
+            </div>
           </Grid>
         </div>
         </header>

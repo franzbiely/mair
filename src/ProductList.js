@@ -22,47 +22,58 @@ export default function ProductList() {
 
   return (
     <ProductContext.Consumer>
-      {({products, setProducts}) => (
-        <Grid item xs={12}>
-          <h1>Product List</h1>
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <Box ml={10}>
-                      {" "}
-                      <b>id</b>{" "}
-                    </Box>
-                  </TableCell>
-                  <TableCell align="left">
-                    <b>Product Name</b>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Box mr={10}>
-                      {" "}
-                      <b>Product Quantity</b>{" "}
-                    </Box>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {products?.map((row) => (
-                  <TableRow key={row.id}>
-                    <TableCell component="th" scope="row">
-                      <Box ml={10}>{row.id} </Box>
+      {({ products, setProducts }) => {
+        const totalProducts = products.map((product) => {
+          return parseInt(product.quantity);
+        });
+        const total = [products.quantity].reduce(function (name, quantity) {
+          return name, quantity;
+        });
+        console.log("total is : " + total);
+
+        console.log({ totalProducts });
+        return (
+          <Grid item xs={12}>
+            <h1>Product List</h1>
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      <Box ml={10}>
+                        {" "}
+                        <b>id</b>{" "}
+                      </Box>
                     </TableCell>
-                    <TableCell align="left">{row.name}</TableCell>
+                    <TableCell align="left">
+                      <b>Product Name</b>
+                    </TableCell>
                     <TableCell align="right">
-                      <Box mr={16}> {row.quantity} </Box>
+                      <Box mr={10}>
+                        {" "}
+                        <b>Product Quantity</b>{" "}
+                      </Box>
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Grid>
-      )}
+                </TableHead>
+                <TableBody>
+                  {products?.map((row) => (
+                    <TableRow key={row.id}>
+                      <TableCell component="th" scope="row">
+                        <Box ml={10}>{row.id} </Box>
+                      </TableCell>
+                      <TableCell align="left">{row.name}</TableCell>
+                      <TableCell align="right">
+                        <Box mr={16}> {row.quantity} </Box>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+        );
+      }}
     </ProductContext.Consumer>
   );
 }

@@ -5,19 +5,13 @@ import ProductList from "./ProductList";
 import { useState } from "react";
 import { ProductContext } from "./ProductContext";
 
-
-
 function App() {
-
   const [products, setProducts] = useState([]);
-  
+
   const providerValue = {
     products,
     setProducts: (name, quantity) => {
-      setProducts([
-        ...products,
-        {name, quantity}
-      ])
+      setProducts([...products, { name, quantity }]);
     },
   };
   return (
