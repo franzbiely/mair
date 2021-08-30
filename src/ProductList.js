@@ -86,7 +86,7 @@ export default function ProductList() {
                       <TableCell align="left">{row.name}</TableCell>
                       <TableCell align="left">
                         {/* <a href=""> */}
-                          <img src={row.image} width="75px" height="40px" />
+                        <img src={row.image} width="75px" height="40px" />
                         {/* </a> */}
                       </TableCell>
                       <TableCell align="right">

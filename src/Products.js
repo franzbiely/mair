@@ -54,7 +54,6 @@ function Products() {
               <Box mt={5}>Quantity:</Box>
               <Box mt={4}>Image:</Box>
               <Box mt={2}>
-                
                 <Button
                   onClick={() => {
                     setProducts(name, quantity, image);
