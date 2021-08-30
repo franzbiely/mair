@@ -13,6 +13,15 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
       width: "30ch",
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      overflow: "hidden",
+      backgroundColor: theme.palette.background.paper,
+    },
+    imageSize: {
+      width: 50,
+      height: 50,
     },
   },
 }));
@@ -20,16 +29,19 @@ const useStyles = makeStyles((theme) => ({
 function Products() {
   const [name, setName] = useState(" ");
   const [quantity, setQuantity] = useState(" ");
+  const [image, setImage] = useState(" ");
+  console.log([name, quantity, image]);
 
   const clearFields = () => {
     setName("");
     setQuantity("");
+    setImage("");
   };
 
   const classes = useStyles();
   return (
     <ProductContext.Consumer>
-      {({products, setProducts}) => (
+      {({ products, setProducts }) => (
         <Grid
           container
           justifyContent="center"
@@ -40,11 +52,13 @@ function Products() {
             <Paper className={classes.paper}>
               <Box mb={5}>Name:</Box>
               <Box mt={5}>Quantity:</Box>
+              <Box mt={4}>Image:</Box>
               <Box mt={2}>
+                
                 <Button
                   onClick={() => {
-                    setProducts(name, quantity)
-                    clearFields();  
+                    setProducts(name, quantity, image);
+                    clearFields();
                   }}
                   variant="contained"
                   color="primary"
@@ -71,6 +85,12 @@ function Products() {
                   type="number"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
+                />
+                <TextField
+                  id="image"
+                  label="Image"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
                 />
               </form>
             </Paper>

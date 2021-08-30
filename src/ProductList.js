@@ -11,6 +11,18 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import { ProductContext } from "./ProductContext";
 
+// console.log("===== PLAYGROUND =========");
+// const x = [1, 2, 3];
+// // Reduce - mu retrun ug value na isa nalang ang value based sa X;
+// // . e.g. : [n]
+// // const z = x.reduce((previous, current) => {
+// //   return previous + current
+// // })
+// // console.log({z})
+// // [6]
+
+// console.log("===== /PLAYGROUND =========");
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -23,13 +35,19 @@ export default function ProductList() {
   return (
     <ProductContext.Consumer>
       {({ products, setProducts }) => {
-        const totalProducts = products.map((product) => {
-          return parseInt(product.quantity);
-        });
-        const total = [products.quantity].reduce(function (name, quantity) {
-          return name, quantity;
-        });
-        console.log("total is : " + total);
+        if (products.length < 1) {
+          return;
+        }
+
+        const totalProducts = products
+          .map((product) => {
+            return parseInt(product.quantity);
+          })
+          .reduce(function (prev, current) {
+            return prev + current;
+          });
+
+        // console.log("total is : " + total);
 
         console.log({ totalProducts });
         return (
@@ -48,6 +66,9 @@ export default function ProductList() {
                     <TableCell align="left">
                       <b>Product Name</b>
                     </TableCell>
+                    <TableCell align="left">
+                      <b>Image</b>
+                    </TableCell>
                     <TableCell align="right">
                       <Box mr={10}>
                         {" "}
@@ -63,11 +84,31 @@ export default function ProductList() {
                         <Box ml={10}>{row.id} </Box>
                       </TableCell>
                       <TableCell align="left">{row.name}</TableCell>
+                      <TableCell align="left">
+                        {/* <a href=""> */}
+                          <img src={row.image} width="75px" height="40px" />
+                        {/* </a> */}
+                      </TableCell>
                       <TableCell align="right">
                         <Box mr={16}> {row.quantity} </Box>
                       </TableCell>
                     </TableRow>
                   ))}
+                </TableBody>
+                <TableBody>
+                  <TableRow>
+                    <TableCell></TableCell>
+                    <TableCell align="left">
+                      <b>Total of Products</b>
+                    </TableCell>
+                    <TableCell></TableCell>
+
+                    <TableCell align="right">
+                      <Box mr={16}>
+                        <h2>{totalProducts}</h2>
+                      </Box>
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>

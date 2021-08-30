@@ -8,10 +8,61 @@ import { ProductContext } from "./ProductContext";
 function App() {
   const [products, setProducts] = useState([]);
 
+
+  // console.log("==== Playground in App =====")
+
+  // const [fruits, setFruits] = useState([
+  //   {
+  //     name : "Manga",
+  //     quantity: 5
+  //   }, 
+  //   {
+  //     name : "grapes",
+  //     quantity : 10
+  //   }
+  // ]);
+
+  // const newFruit = {
+  //   name : "Bayabas",
+  //   quantity: 3
+  // }
+
+   
+
+  // +
+
+  // {
+  //   name : "Bayabas",
+  //   quantity : 3
+  // }
+
+  // /*
+  // [   {name: "Manga", quanitty: 5}, 
+  // {name: "Grapes", quanitty: 10}, 
+  //     {
+  //       name : "Bayabas",
+  //       quantity: 3
+  //     } 
+  //   ]
+  // */
+  // <button onClick={() => {
+  //   setFruits( [ ...fruits, {
+  //     name : "Bayabas",
+  //     quantity: 3
+  //   } ] )
+  // }}></button>
+
+  
+
+
+
+  // console.log("==== /Playground in App =====")
+
+
   const providerValue = {
     products,
-    setProducts: (name, quantity) => {
-      setProducts([...products, { name, quantity }]);
+    setProducts: (name, quantity,image) => {
+      setProducts([...products, { name, quantity,image }]);
     },
   };
   return (
