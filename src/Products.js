@@ -19,10 +19,6 @@ const useStyles = makeStyles((theme) => ({
       overflow: "hidden",
       backgroundColor: theme.palette.background.paper,
     },
-    imageSize: {
-      width: 50,
-      height: 50,
-    },
   },
 }));
 
@@ -85,12 +81,15 @@ function Products() {
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
-                <TextField
-                  id="image"
-                  label="Image"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
+                <Button variant="contained" component="label">
+                  Upload File
+                  <input type="file" hidden onChange={(e) => {
+                    console.log({e})
+                    return setImage(e.target.value)}
+                  }
+                  
+                  />
+                </Button>
               </form>
             </Paper>
           </Grid>

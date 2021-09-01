@@ -10,6 +10,10 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import { ProductContext } from "./ProductContext";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 
 // console.log("===== PLAYGROUND =========");
 // const x = [1, 2, 3];
@@ -34,7 +38,7 @@ export default function ProductList() {
 
   return (
     <ProductContext.Consumer>
-      {({ products, setProducts }) => {
+      {({ products, setProducts, deleteProduct }) => {
         if (products.length < 1) {
           return;
         }
@@ -46,7 +50,7 @@ export default function ProductList() {
           .reduce(function (prev, current) {
             return prev + current;
           });
-
+          
         // console.log("total is : " + total);
 
         console.log({ totalProducts });
@@ -75,22 +79,42 @@ export default function ProductList() {
                         <b>Product Quantity</b>{" "}
                       </Box>
                     </TableCell>
+                    <TableCell align="left">
+                      <b>Edit</b>
+                    </TableCell>
+                    <TableCell align="left">
+                      <b>Delete</b>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {products?.map((row) => (
+                  {products?.map((row, i) => (
                     <TableRow key={row.id}>
                       <TableCell component="th" scope="row">
                         <Box ml={10}>{row.id} </Box>
                       </TableCell>
                       <TableCell align="left">{row.name}</TableCell>
                       <TableCell align="left">
-                        {/* <a href=""> */}
-                        <img src={row.image} width="75px" height="40px" />
-                        {/* </a> */}
+                        <img
+                          src={"file://" + row.image}
+                          width="75px"
+                          height="40px"
+                        />
                       </TableCell>
                       <TableCell align="right">
                         <Box mr={16}> {row.quantity} </Box>
+                      </TableCell>
+                      <TableCell align="left">
+                        <Button onClick="">
+                          <EditIcon />
+                        </Button>
+                      </TableCell>
+                      <TableCell align="left">
+                        <Button onClick={() => {
+                          deleteProduct(i)
+                        }}>
+                          <DeleteIcon />
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}

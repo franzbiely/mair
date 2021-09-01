@@ -7,7 +7,7 @@ import { ProductContext } from "./ProductContext";
 
 function App() {
   const [products, setProducts] = useState([]);
-
+  
 
   // console.log("==== Playground in App =====")
 
@@ -64,7 +64,10 @@ function App() {
     setProducts: (name, quantity,image) => {
       setProducts([...products, { name, quantity,image }]);
     },
-  };
+    deleteProduct(i) { console.log({i,products})
+      setProducts(products.slice(i+1))
+    }
+  };  
   return (
     <div className="App">
       <ProductContext.Provider value={providerValue}>
