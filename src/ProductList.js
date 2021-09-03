@@ -38,7 +38,7 @@ export default function ProductList() {
 
   return (
     <ProductContext.Consumer>
-      {({ products, setProducts, deleteProduct }) => {
+      {({ products, setProducts, deleteProduct, editProduct }) => {
         if (products.length < 1) {
           return;
         }
@@ -50,7 +50,7 @@ export default function ProductList() {
           .reduce(function (prev, current) {
             return prev + current;
           });
-          
+
         // console.log("total is : " + total);
 
         console.log({ totalProducts });
@@ -105,14 +105,18 @@ export default function ProductList() {
                         <Box mr={16}> {row.quantity} </Box>
                       </TableCell>
                       <TableCell align="left">
-                        <Button onClick="">
+                        <Button onClick={() => {
+                            editProduct(i);
+                          }}>
                           <EditIcon />
                         </Button>
                       </TableCell>
                       <TableCell align="left">
-                        <Button onClick={() => {
-                          deleteProduct(i)
-                        }}>
+                        <Button
+                          onClick={() => {
+                            deleteProduct(i);
+                          }}
+                        >
                           <DeleteIcon />
                         </Button>
                       </TableCell>

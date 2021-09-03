@@ -23,21 +23,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Products() {
-  const [name, setName] = useState(" ");
-  const [quantity, setQuantity] = useState(" ");
-  const [image, setImage] = useState(" ");
-  console.log([name, quantity, image]);
 
-  const clearFields = () => {
-    setName("");
-    setQuantity("");
-    setImage("");
-  };
+
+
 
   const classes = useStyles();
   return (
     <ProductContext.Consumer>
-      {({ products, setProducts }) => (
+      {({ products, setProducts,name, quantity, image, setName, setQuantity, setImage, clearFields}) => (
         <Grid
           container
           justifyContent="center"
@@ -83,7 +76,7 @@ function Products() {
                 />
                 <Button variant="contained" component="label">
                   Upload File
-                  <input type="file" hidden onChange={(e) => {
+                  <input type="file" id="image" hidden onChange={(e) => {
                     console.log({e})
                     return setImage(e.target.value)}
                   }

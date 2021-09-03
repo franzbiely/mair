@@ -7,7 +7,18 @@ import { ProductContext } from "./ProductContext";
 
 function App() {
   const [products, setProducts] = useState([]);
-  
+  const [name, setName] = useState("NAME NI");
+  const [quantity, setQuantity] = useState("100");
+  const [image, setImage] = useState("goku.jpg");
+  const clearFields = () => {
+    setName("");
+    setQuantity("");
+    setImage("");
+  };
+
+  // const [editableProducts, setEditableProducts] = useState({});
+  // const x = products
+  // setProducts("hello")
 
   // console.log("==== Playground in App =====")
 
@@ -15,7 +26,7 @@ function App() {
   //   {
   //     name : "Manga",
   //     quantity: 5
-  //   }, 
+  //   },
   //   {
   //     name : "grapes",
   //     quantity : 10
@@ -27,8 +38,6 @@ function App() {
   //   quantity: 3
   // }
 
-   
-
   // +
 
   // {
@@ -37,12 +46,12 @@ function App() {
   // }
 
   // /*
-  // [   {name: "Manga", quanitty: 5}, 
-  // {name: "Grapes", quanitty: 10}, 
+  // [   {name: "Manga", quanitty: 5},
+  // {name: "Grapes", quanitty: 10},
   //     {
   //       name : "Bayabas",
   //       quantity: 3
-  //     } 
+  //     }
   //   ]
   // */
   // <button onClick={() => {
@@ -52,22 +61,37 @@ function App() {
   //   } ] )
   // }}></button>
 
-  
-
-
-
   // console.log("==== /Playground in App =====")
-
 
   const providerValue = {
     products,
-    setProducts: (name, quantity,image) => {
-      setProducts([...products, { name, quantity,image }]);
+    setProducts: (name, quantity, image) => {
+      setProducts([...products, { name, quantity, image }]);
     },
-    deleteProduct(i) { console.log({i,products})
-      setProducts(products.slice(i+1))
+    deleteProduct(i) { 
+      const tempProduct = [...products]
+      tempProduct.splice(i,1)
+      setProducts(tempProduct)
+    },
+    name,
+    setName,
+    quantity,
+    setQuantity,
+    image,
+    setImage,
+    clearFields,
+    
+    editProduct(i){
+      const editableItems = products.find((product, j) => {
+       console.log({i,j})
+        return i === j
+      })
+      console.log({editableItems})
+      setName(editableItems.name)
+      setQuantity(editableItems.quantity)
+      setImage(editableItems.image)
     }
-  };  
+  };
   return (
     <div className="App">
       <ProductContext.Provider value={providerValue}>
