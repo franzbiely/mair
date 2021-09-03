@@ -23,14 +23,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Products() {
-
-
-
-
   const classes = useStyles();
   return (
     <ProductContext.Consumer>
-      {({ products, setProducts,name, quantity, image, setName, setQuantity, setImage, clearFields}) => (
+      {({
+        products,
+        setProducts,
+        name,
+        quantity,
+        image,
+        setName,
+        setQuantity,
+        setImage,
+        clearFields,
+        saveEditProducts,
+        i,
+      }) => (
         <Grid
           container
           justifyContent="center"
@@ -54,10 +62,19 @@ function Products() {
                 >
                   Add
                 </Button>
+                <Button
+                  onClick={() => {
+                    saveEditProducts(i);
+                  }}
+                  variant="contained"
+                  color="secondary"
+                  className={classes.button}
+                >
+                  Update
+                </Button>
               </Box>
             </Paper>
           </Grid>
-
           <Grid container direction="row" item xs={2}>
             <Paper className={classes.paper}>
               <form className={classes.root} noValidate autoComplete="off">
@@ -76,11 +93,14 @@ function Products() {
                 />
                 <Button variant="contained" component="label">
                   Upload File
-                  <input type="file" id="image" hidden onChange={(e) => {
-                    console.log({e})
-                    return setImage(e.target.value)}
-                  }
-                  
+                  <input
+                    type="file"
+                    id="image"
+                    hidden
+                    onChange={(e) => {
+                      console.log({ e });
+                      return setImage(e.target.value);
+                    }}
                   />
                 </Button>
               </form>

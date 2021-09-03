@@ -7,9 +7,10 @@ import { ProductContext } from "./ProductContext";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [name, setName] = useState("NAME NI");
-  const [quantity, setQuantity] = useState("100");
-  const [image, setImage] = useState("goku.jpg");
+  const [name, setName] = useState(" ");
+  const [quantity, setQuantity] = useState(" ");
+  const [image, setImage] = useState(" ");
+  const [i, setI] = useState(" ");
   const clearFields = () => {
     setName("");
     setQuantity("");
@@ -66,12 +67,13 @@ function App() {
   const providerValue = {
     products,
     setProducts: (name, quantity, image) => {
+      // Add
       setProducts([...products, { name, quantity, image }]);
     },
-    deleteProduct(i) { 
-      const tempProduct = [...products]
-      tempProduct.splice(i,1)
-      setProducts(tempProduct)
+    deleteProduct(i) {
+      const tempProduct = [...products];
+      tempProduct.splice(i, 1);
+      setProducts(tempProduct);
     },
     name,
     setName,
@@ -80,17 +82,25 @@ function App() {
     image,
     setImage,
     clearFields,
-    
-    editProduct(i){
+
+    editProduct(i) {
       const editableItems = products.find((product, j) => {
-       console.log({i,j})
-        return i === j
-      })
-      console.log({editableItems})
-      setName(editableItems.name)
-      setQuantity(editableItems.quantity)
-      setImage(editableItems.image)
-    }
+        console.log({ i, j });
+        return i === j;
+      });
+      console.log({ editableItems });
+      setName(editableItems.name);
+      setQuantity(editableItems.quantity);
+      setImage(editableItems.image);
+      setI(i);
+    },
+    // saveEdit
+    saveEditProducts(i) {
+      const update = [...products];
+      update[i] = { name, quantity, image };
+      setProducts(update);
+    },
+    i,
   };
   return (
     <div className="App">

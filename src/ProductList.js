@@ -11,7 +11,6 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import { ProductContext } from "./ProductContext";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
@@ -30,6 +29,9 @@ import EditIcon from "@material-ui/icons/Edit";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
+  },
+  container: {
+    maxHeight: 380,
   },
 });
 
@@ -52,92 +54,98 @@ export default function ProductList() {
           });
 
         // console.log("total is : " + total);
-
-        console.log({ totalProducts });
+        // console.log({ totalProducts });
         return (
           <Grid item xs={12}>
             <h1>Product List</h1>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      <Box ml={10}>
-                        {" "}
-                        <b>id</b>{" "}
-                      </Box>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Product Name</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Image</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Box mr={10}>
-                        {" "}
-                        <b>Product Quantity</b>{" "}
-                      </Box>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Edit</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Delete</b>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {products?.map((row, i) => (
-                    <TableRow key={row.id}>
-                      <TableCell component="th" scope="row">
-                        <Box ml={10}>{row.id} </Box>
-                      </TableCell>
-                      <TableCell align="left">{row.name}</TableCell>
-                      <TableCell align="left">
-                        <img
-                          src={"file://" + row.image}
-                          width="75px"
-                          height="40px"
-                        />
-                      </TableCell>
-                      <TableCell align="right">
-                        <Box mr={16}> {row.quantity} </Box>
-                      </TableCell>
-                      <TableCell align="left">
-                        <Button onClick={() => {
-                            editProduct(i);
-                          }}>
-                          <EditIcon />
-                        </Button>
-                      </TableCell>
-                      <TableCell align="left">
-                        <Button
-                          onClick={() => {
-                            deleteProduct(i);
-                          }}
-                        >
-                          <DeleteIcon />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-                <TableBody>
-                  <TableRow>
-                    <TableCell></TableCell>
-                    <TableCell align="left">
-                      <b>Total of Products</b>
-                    </TableCell>
-                    <TableCell></TableCell>
+                <TableContainer className={classes.container}>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>
+                          <Box ml={10}>
+                            {" "}
+                            <b>id</b>{" "}
+                          </Box>
+                        </TableCell>
+                        <TableCell align="left">
+                          <b>Product Name</b>
+                        </TableCell>
+                        <TableCell align="left">
+                          <b>Image</b>
+                        </TableCell>
+                        <TableCell align="right">
+                          <Box mr={10}>
+                            {" "}
+                            <b>Product Quantity</b>{" "}
+                          </Box>
+                        </TableCell>
+                        <TableCell align="left">
+                          <b>Edit</b>
+                        </TableCell>
+                        <TableCell align="left">
+                          <b>Delete</b>
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {products?.map((row, i) => (
+                        <TableRow key={row.id}>
+                          <TableCell component="th" scope="row">
+                            <Box ml={10}>{row.id} </Box>
+                          </TableCell>
+                          <TableCell align="left">{row.name}</TableCell>
+                          <TableCell align="left">
+                            <img
+                              src={"file://" + row.image}
+                              width="75px"
+                              height="40px"
+                            />
+                          </TableCell>
+                          <TableCell align="right">
+                            <Box mr={16}> {row.quantity} </Box>
+                          </TableCell>
+                          <TableCell align="left">
+                            <Button
+                              onClick={() => {
+                                editProduct(i);
+                              }}
+                            >
+                              <EditIcon />
+                            </Button>
+                          </TableCell>
+                          <TableCell align="left">
+                            <Button
+                              onClick={() => {
+                                deleteProduct(i);
+                              }}
+                            >
+                              <DeleteIcon />
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
 
-                    <TableCell align="right">
-                      <Box mr={16}>
-                        <h2>{totalProducts}</h2>
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell></TableCell>
+                        <TableCell align="left">
+                          <b>Total of Products</b>
+                        </TableCell>
+                        <TableCell></TableCell>
+
+                        <TableCell align="right">
+                          <Box mr={16}>
+                            <h2>{totalProducts}</h2>
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </Table>
             </TableContainer>
           </Grid>
