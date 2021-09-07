@@ -49,7 +49,7 @@ function Products() {
             <Paper className={classes.paper}>
               <Box mb={5}>Name:</Box>
               <Box mt={5}>Quantity:</Box>
-              <Box mt={4}>Image:</Box>
+
               <Box mt={2}>
                 <Button
                   onClick={() => {
@@ -65,6 +65,7 @@ function Products() {
                 <Button
                   onClick={() => {
                     saveEditProducts(i);
+                    clearFields();
                   }}
                   variant="contained"
                   color="secondary"
@@ -91,9 +92,16 @@ function Products() {
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
-                <Button variant="contained" component="label">
+
+                <Button
+                  style={{ color: "blue" }}
+                  color="secondary"
+                  variant="contained"
+                  component="label"
+                >
                   Upload File
                   <input
+                    color="secondary"
                     type="file"
                     id="image"
                     hidden

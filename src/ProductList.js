@@ -33,6 +33,9 @@ const useStyles = makeStyles({
   container: {
     maxHeight: 380,
   },
+  tableRow: {
+    height: 50,
+  },
 });
 
 export default function ProductList() {
@@ -67,7 +70,8 @@ export default function ProductList() {
                         <TableCell>
                           <Box ml={10}>
                             {" "}
-                            <b>id</b>{" "}
+                            <b>Id</b>{" "}
+                           
                           </Box>
                         </TableCell>
                         <TableCell align="left">
@@ -92,7 +96,7 @@ export default function ProductList() {
                     </TableHead>
                     <TableBody>
                       {products?.map((row, i) => (
-                        <TableRow key={row.id}>
+                        <TableRow key={row.id} className={classes.tableRow}>
                           <TableCell component="th" scope="row">
                             <Box ml={10}>{row.id} </Box>
                           </TableCell>
@@ -113,7 +117,7 @@ export default function ProductList() {
                                 editProduct(i);
                               }}
                             >
-                              <EditIcon />
+                              <EditIcon style={{ color: "blue" }} />
                             </Button>
                           </TableCell>
                           <TableCell align="left">
@@ -122,7 +126,7 @@ export default function ProductList() {
                                 deleteProduct(i);
                               }}
                             >
-                              <DeleteIcon />
+                              <DeleteIcon style={{ color: "red" }} />
                             </Button>
                           </TableCell>
                         </TableRow>

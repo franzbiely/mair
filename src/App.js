@@ -4,6 +4,8 @@ import Products from "./Products";
 import ProductList from "./ProductList";
 import { useState } from "react";
 import { ProductContext } from "./ProductContext";
+import CategoryForm from "./CategoryForm";
+import CategoryList from "./CategoryList";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -15,59 +17,52 @@ function App() {
     setName("");
     setQuantity("");
     setImage("");
+    setI("");
+  };
+    // CategoryForm
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState("");
+  
+  const clearText = () => {
+    setCategory("");
+    console.log(category);
   };
 
-  // const [editableProducts, setEditableProducts] = useState({});
-  // const x = products
-  // setProducts("hello")
-
-  // console.log("==== Playground in App =====")
-
-  // const [fruits, setFruits] = useState([
-  //   {
-  //     name : "Manga",
-  //     quantity: 5
-  //   },
-  //   {
-  //     name : "grapes",
-  //     quantity : 10
-  //   }
-  // ]);
-
-  // const newFruit = {
-  //   name : "Bayabas",
-  //   quantity: 3
-  // }
-
-  // +
-
-  // {
-  //   name : "Bayabas",
-  //   quantity : 3
-  // }
-
-  // /*
-  // [   {name: "Manga", quanitty: 5},
-  // {name: "Grapes", quanitty: 10},
-  //     {
-  //       name : "Bayabas",
-  //       quantity: 3
-  //     }
-  //   ]
-  // */
-  // <button onClick={() => {
-  //   setFruits( [ ...fruits, {
-  //     name : "Bayabas",
-  //     quantity: 3
-  //   } ] )
-  // }}></button>
-
-  // console.log("==== /Playground in App =====")
-
   const providerValue = {
+    // CATEGORY
+    categories,
+    addCategory: (category) => {
+      setCategories([...categories, {category}]);
+    },
+    deleteCategory(i) {
+      const tempCategory = [...categories];
+      tempCategory.splice(i, 1);
+      setCategories(tempCategory);
+    },
+    category,
+    setCategory,
+    clearText,
+    editCategory(i){
+      const editableCategory = categories.find((category, w)=>{
+        console.log({i, w}); 
+        return i ===w
+      });
+      console.log({ editableCategory});
+      setCategory(editableCategory.category);
+      setI(i);
+    },
+    saveEditCategory(i) {
+      const updateCategory = [...categories]
+      updateCategory[i] = {category};
+      setCategories(updateCategory)
+    },
+    i,
+
+
+
+      //  Products
     products,
     setProducts: (name, quantity, image) => {
-      // Add
       setProducts([...products, { name, quantity, image }]);
     },
     deleteProduct(i) {
@@ -75,6 +70,8 @@ function App() {
       tempProduct.splice(i, 1);
       setProducts(tempProduct);
     },
+   
+    // edit
     name,
     setName,
     quantity,
@@ -108,6 +105,9 @@ function App() {
         <Header />
         <Products />
         <ProductList />
+        
+        {/* <CategoryForm />
+        <CategoryList /> */}
       </ProductContext.Provider>
     </div>
   );
