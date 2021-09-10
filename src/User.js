@@ -38,12 +38,6 @@ const useStyles = makeStyles((theme) => ({
 function User() {
   const classes = useStyles();
 
-  // const clearFields = () => {
-  //     setUseName("");
-  //     setLastName("");
-  //     setEmail("");
-  //     setPassword("");
-  //   };
 
   return (
     <ProductContext.Consumer>

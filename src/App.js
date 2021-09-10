@@ -99,8 +99,6 @@ function App() {
     },
     i,
 
-
-
       //  Products
     products,
     setProducts: (name, quantity, image) => {
