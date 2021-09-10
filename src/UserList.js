@@ -24,7 +24,7 @@ export default function BasicTable() {
 
   return (
     <ProductContext.Consumer>
-      {({ user }) => {
+      {({ user, deleteUser, editUser }) => {
         return (
           <Grid item xs={12}>
             <h1> User List</h1>
@@ -63,7 +63,7 @@ export default function BasicTable() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {user?.map((row) => (
+                  {user?.map((row,i) => (
                     <TableRow key={row.category}>
                       <TableCell component="th" scope="row">
                         {row.firstName}
@@ -77,7 +77,7 @@ export default function BasicTable() {
                       <TableCell align="left">
                         <Button
                           onClick={() => {
-                            // editUser(i);
+                            editUser(i);
                           }}
                         >
                           <EditIcon style={{ color: "blue" }} />
@@ -86,7 +86,7 @@ export default function BasicTable() {
                       <TableCell align="left">
                         <Button
                           onClick={() => {
-                            // deleteUser(i);
+                            deleteUser(i);
                           }}
                         >
                           <DeleteIcon style={{ color: "red" }} />

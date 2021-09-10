@@ -43,7 +43,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSubmit = () => {
+  const clearUser = () => {
     console.log(firstName, lastName, birthday, age, userName, email,password);
     setFirstName("");
     setLastName("");
@@ -67,8 +67,35 @@ function App() {
     userName, setUserName,
     email, setEmail,
     password, setPassword,
-    onSubmit,
-    
+    clearUser,
+
+    deleteUser(i) {
+      const tempUser = [...user];
+      tempUser.splice(i, 1);
+      setUser(tempUser)
+    },
+    editUser(i) {
+      const editableUser = user.find((user, C) =>{
+        console.log({i, C})
+        return i === C
+      })
+      console.log({editableUser});
+      setFirstName(editableUser.firstName);
+      setLastName(editableUser.lastName);
+      setBirthday(editableUser.birthday);
+      setAge(editableUser.age);
+      setUserName(editableUser.userName);
+      setEmail(editableUser.email);
+      setPassword(editableUser.password);
+      setI(i);
+    },
+
+    saveEditUser(i) {
+      const updateUser = [... user]
+      updateUser[i] = {firstName, lastName, birthday, age, userName, email,password}
+      setUser(updateUser)
+    },
+    i,
 
     // CATEGORY
     categories,

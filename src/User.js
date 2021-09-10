@@ -7,16 +7,6 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { ProductContext } from "./ProductContext";
 
-// const useStyles = makeStyles((theme) => ({
-
-//   paper: {
-//     padding: theme.spacing(2),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary,
-//     backgroundColor: 'blue',
-//   },
-// }));
-
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -38,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 function User() {
   const classes = useStyles();
 
-
   return (
     <ProductContext.Consumer>
       {({
@@ -57,6 +46,9 @@ function User() {
         setBirthday,
         setEmail,
         setPassword,
+        clearUser,
+        saveEditUser,
+        i,
       }) => (
         <div>
           <h1>Create Account</h1>
@@ -132,7 +124,7 @@ function User() {
                 <br />
               </form>
               <Button
-                onClick={(e) =>
+                onClick={(e) => {
                   addUser(
                     firstName,
                     lastName,
@@ -141,13 +133,25 @@ function User() {
                     userName,
                     email,
                     password
-                  )
-                }
+                  );
+                  clearUser();
+                }}
                 variant="contained"
                 color="secondary"
                 className={classes.button}
               >
                 Log in
+              </Button>
+              <Button
+                onClick={(e) => {
+                  saveEditUser(i);
+                  clearUser();
+                }}
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
+                Update
               </Button>
             </Paper>
           </Grid>
