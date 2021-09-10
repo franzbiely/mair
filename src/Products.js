@@ -62,11 +62,8 @@ function Products() {
                 >
                   Add
                 </Button>
-                <Button
-                  onClick={() => {
-                    saveEditProducts(i);
-                    clearFields();
-                  }}
+                <Button 
+                  type="submit"
                   variant="contained"
                   color="secondary"
                   className={classes.button}

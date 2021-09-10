@@ -6,8 +6,13 @@ import { useState } from "react";
 import { ProductContext } from "./ProductContext";
 import CategoryForm from "./CategoryForm";
 import CategoryList from "./CategoryList";
+import User from "./User"
+import UserList from "./UserList"
 
 function App() {
+
+  
+  
   const [products, setProducts] = useState([]);
   const [name, setName] = useState(" ");
   const [quantity, setQuantity] = useState(" ");
@@ -19,6 +24,8 @@ function App() {
     setImage("");
     setI("");
   };
+  
+
     // CategoryForm
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
@@ -27,8 +34,42 @@ function App() {
     setCategory("");
     console.log(category);
   };
+  const [user, setUser] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [age, setAge] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = () => {
+    console.log(firstName, lastName, birthday, age, userName, email,password);
+    setFirstName("");
+    setLastName("");
+    setUserName("");
+    setEmail("");
+    setPassword("");
+    setBirthday("");
+    setAge("");
+  };
 
   const providerValue = {
+    // USER
+    user,
+    addUser:(firstName, lastName, birthday, age, userName, email,password) => {
+      setUser([...user, {firstName, lastName, birthday, age, userName, email,password}])
+    },
+    firstName,setFirstName,
+    lastName, setLastName,
+    birthday, setBirthday,
+    age, setAge,
+    userName, setUserName,
+    email, setEmail,
+    password, setPassword,
+    onSubmit,
+    
+
     // CATEGORY
     categories,
     addCategory: (category) => {
@@ -102,12 +143,14 @@ function App() {
   return (
     <div className="App">
       <ProductContext.Provider value={providerValue}>
-        <Header />
+        {/* <Header />
         <Products />
         <ProductList />
-        
+         */}
         {/* <CategoryForm />
         <CategoryList /> */}
+        <User/>
+        <UserList/>
       </ProductContext.Provider>
     </div>
   );

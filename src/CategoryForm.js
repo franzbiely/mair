@@ -46,7 +46,7 @@ function CategoryForm() {
               add category
             </Button>
             </Box>
-            <Box ml={17} mt={-4.4}  >
+            <Box ml={17} mt={-4.5}  >
             <Button
               onClick={() => {
                 saveEditCategory(i);
