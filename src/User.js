@@ -25,31 +25,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function User() {
   const classes = useStyles();
-
+  var {
+    addUser,
+    firstName,
+    lastName,
+    birthday,
+    age,
+    userName,
+    email,
+    password,
+    setFirstName,
+    setLastName,
+    setUserName,
+    setAge,
+    setBirthday,
+    setEmail,
+    setPassword,
+    clearUser,
+    saveEditUser,
+    i,
+  } = React.useContext(ProductContext);
+  
   return (
-    <ProductContext.Consumer>
-      {({
-        addUser,
-        firstName,
-        lastName,
-        birthday,
-        age,
-        userName,
-        email,
-        password,
-        setFirstName,
-        setLastName,
-        setUserName,
-        setAge,
-        setBirthday,
-        setEmail,
-        setPassword,
-        clearUser,
-        saveEditUser,
-        i,
-      }) => (
+   
         <div>
           <Grid item xs={12}>
             {" "}
@@ -163,8 +164,8 @@ function User() {
             </Paper>
           </Grid>
         </div>
-      )}
-    </ProductContext.Consumer>
+      
+   
   );
 }
 export default User;

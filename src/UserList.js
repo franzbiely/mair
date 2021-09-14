@@ -18,13 +18,15 @@ const useStyles = makeStyles({
   },
 });
 
+
 export default function BasicTable() {
   const classes = useStyles();
+  var { user, deleteUser, editUser } = React.useContext(ProductContext);
 
   return (
-    <ProductContext.Consumer>
-      {({ user, deleteUser, editUser }) => {
-        return (
+  
+      
+        
           <Grid item xs={12}>
             <h1> User List</h1>
             <TableContainer component={Paper}>
@@ -97,8 +99,8 @@ export default function BasicTable() {
               </Table>
             </TableContainer>
           </Grid>
-        );
-      }}
-    </ProductContext.Consumer>
+        
+    
+   
   );
 }

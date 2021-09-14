@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CategoryForm() {
-  
   const classes = useStyles();
+  var { addCategory, category, setCategory, clearText, saveEditCategory, i } = React.useContext(ProductContext);
+
   return (
-    <ProductContext.Consumer>
-      {({ categories, addCategory, category, setCategory, clearText, saveEditCategory, i }) => (
+   
         <Grid item xs={12}>
           <div>
             <h1>Category</h1>
@@ -61,8 +61,6 @@ function CategoryForm() {
             </Box>
           </div>
         </Grid>
-      )}
-    </ProductContext.Consumer>
   );
 }
 

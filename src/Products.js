@@ -24,10 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Products() {
   const classes = useStyles();
-  return (
-    <ProductContext.Consumer>
-      {({
-        products,
+  var { products,
         setProducts,
         name,
         quantity,
@@ -37,15 +34,18 @@ function Products() {
         setImage,
         clearFields,
         saveEditProducts,
-        i,
-      }) => (
+        i, } = React.useContext(ProductContext);
+
+  return (
+    
         <Grid
           container
           justifyContent="center"
           alignItems="flex-end"
           spacing={1}
-        >
+        >   
           <Grid item xs={2}>
+            
             <Paper className={classes.paper}>
               <Box mb={5}>Name:</Box>
               <Box mt={5}>Quantity:</Box>
@@ -63,6 +63,10 @@ function Products() {
                   Add
                 </Button>
                 <Button 
+                onClick={() => {
+                  saveEditProducts(i);
+                  clearFields();
+                }}
                   type="submit"
                   variant="contained"
                   color="secondary"
@@ -112,8 +116,6 @@ function Products() {
             </Paper>
           </Grid>
         </Grid>
-      )}
-    </ProductContext.Consumer>
   );
 }
 
