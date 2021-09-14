@@ -18,7 +18,6 @@ const useStyles = makeStyles({
   },
 });
 
- 
 export default function BasicTable() {
   const classes = useStyles();
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -51,6 +51,9 @@ function User() {
         i,
       }) => (
         <div>
+          <Grid item xs={12}>
+            {" "}
+          </Grid>
           <h1>Create Account</h1>
           <Grid
             container
@@ -102,7 +105,7 @@ function User() {
                   variant="outlined"
                   value={age}
                   type="number"
-                  style={{ width: "15%" }}
+                  style={{ width: "15%", color: "blue"}}
                   onChange={(e) => setAge(e.target.value)}
                 />
                 <br />
@@ -123,36 +126,40 @@ function User() {
                 />
                 <br />
               </form>
-              <Button
-                onClick={(e) => {
-                  addUser(
-                    firstName,
-                    lastName,
-                    birthday,
-                    age,
-                    userName,
-                    email,
-                    password
-                  );
-                  clearUser();
-                }}
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-              >
-                Log in
-              </Button>
-              <Button
-                onClick={(e) => {
-                  saveEditUser(i);
-                  clearUser();
-                }}
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-              >
-                Update
-              </Button>
+              <Box mr={13}>
+                <Button
+                  onClick={() => {
+                    addUser(
+                      firstName,
+                      lastName,
+                      birthday,
+                      age,
+                      userName,
+                      email,
+                      password
+                    );
+                    clearUser();
+                  }}
+                  variant="contained"
+                  color="secondary"
+                  className={classes.button}
+                >
+                  Log in
+                </Button>
+              </Box>
+              <Box ml={14} mt={-4.5}>
+                <Button
+                  onClick={() => {
+                    saveEditUser(i);
+                    clearUser();
+                  }}
+                  variant="contained"
+                  color="secondary"
+                  className={classes.button}
+                >
+                  Update
+                </Button>
+              </Box>
             </Paper>
           </Grid>
         </div>
