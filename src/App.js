@@ -13,19 +13,27 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
-import PersonIcon from '@material-ui/icons/Person';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import ListIcon from '@material-ui/icons/List';
+import PersonIcon from "@material-ui/icons/Person";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ListIcon from "@material-ui/icons/List";
+import List from "@material-ui/core/List";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItem from "@material-ui/core/ListItem";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    width: "100%",
+    maxWidth: 300,
+    backgroundColor: theme.palette.background.paper,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    backgroundColor: "lightGray",
+    backgroundColor: "silver",
+    width: "",
+    height: "700px",
   },
 }));
 
@@ -214,7 +222,7 @@ function App() {
       <ProductContext.Provider value={providerValue}>
         <Router>
           <Grid container spacing={3}>
-            <Paper className={classes.paper}>
+            {/* <Paper className={classes.paper}> */}
               <Grid
                 direction="row"
                 justifyContent="flex-start"
@@ -222,17 +230,56 @@ function App() {
                 item
                 xs={2}
               >
-                <Box ml={8} align="left">
+                <Box ml={5} align="left">
                   <h1>Options</h1>
+                  <div className={classes.root}>
+                    <List component="nav" aria-label="main mailbox folders">
+                      <Link to="/products">
+                        <ListItem button>
+                          <ListItemIcon>
+                            <ShoppingCartIcon
+                              fontSize="small"
+                              style={{ color: "blue" }}
+                            />
+                          </ListItemIcon>
+                          <ListItemText primary="Products" />
+                        </ListItem>
+                      </Link>
 
-                  <Link to="/products"> <ShoppingCartIcon/>
-                    Products
-                  </Link><br />
-                  <Link to="/user"><PersonIcon/> User</Link> <br />
-                  <Link to="/category"> <ListIcon/> Category</Link> <br />
+                      <br />
+                      <Box mt={-2}>
+                        <Link to="/user">
+                          <ListItem button>
+                            <ListItemIcon>
+                              <PersonIcon
+                                fontSize="small"
+                                style={{ color: "blue" }}
+                              />
+                            </ListItemIcon>
+                            <ListItemText primary="User" />
+                          </ListItem>
+                        </Link>
+                      </Box>
+                      <br />
+                      <Box mt={-2}>
+                        <Link to="/category">
+                          <ListItem button>
+                            <ListItemIcon>
+                              <ListIcon
+                                fontSize="small"
+                                style={{ color: "blue" }}
+                              />
+                            </ListItemIcon>
+                            <ListItemText primary="Category" />
+                          </ListItem>
+                        </Link>
+                      </Box>
+                      <br />
+                    </List>
+                  </div>
                 </Box>
               </Grid>
-            </Paper>
+            {/* </Paper> */}
             <Grid
               justifyContent="flex-end"
               alignItems="flex-start"
@@ -258,13 +305,6 @@ function App() {
             </Grid>
           </Grid>
         </Router>
-        {/* <Header />
-        <Products />
-        <ProductList /> 
-        <CategoryForm />
-        <CategoryList />
-        <User/>
-        <UserList/> */}
       </ProductContext.Provider>
     </div>
   );

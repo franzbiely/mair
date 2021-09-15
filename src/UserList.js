@@ -18,89 +18,84 @@ const useStyles = makeStyles({
   },
 });
 
-
 export default function BasicTable() {
   const classes = useStyles();
   var { user, deleteUser, editUser } = React.useContext(ProductContext);
 
   return (
-  
-      
-        
-          <Grid item xs={12}>
-            <h1> User List</h1>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      {" "}
-                      <b>First Name</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Last Name</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Birthday</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Age</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Username</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Email</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Password</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Edit</b>
-                    </TableCell>
-                    <TableCell align="left">
-                      <b>Delete</b>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {user?.map((row,i) => (
-                    <TableRow key={row.category}>
-                      <TableCell component="th" scope="row">
-                        {row.firstName}
-                      </TableCell>
-                      <TableCell align="left">{row.lastName}</TableCell>
-                      <TableCell align="left">{row.birthday}</TableCell>
-                      <TableCell align="left">{row.age}</TableCell>
-                      <TableCell align="left">{row.userName}</TableCell>
-                      <TableCell align="left">{row.email}</TableCell>
-                      <TableCell align="left">{row.password}</TableCell>
-                      <TableCell align="left">
-                        <Button
-                          onClick={() => {
-                            editUser(i);
-                          }}
-                        >
-                          <EditIcon style={{ color: "blue" }} />
-                        </Button>
-                      </TableCell>
-                      <TableCell align="left">
-                        <Button
-                          onClick={() => {
-                            deleteUser(i);
-                          }}
-                        >
-                          <DeleteIcon style={{ color: "red" }} />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-        
-    
-   
+    <Grid container>
+      <Grid item xs={12}>
+        <h1> User List</h1>
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  {" "}
+                  <b>First Name</b>
+                </TableCell>
+                <TableCell align="left">
+                  <b>Last Name</b>
+                </TableCell>
+                <TableCell align="left">
+                  <b>Birthday</b>
+                </TableCell>
+                <TableCell align="left">
+                  <b>Age</b>
+                </TableCell>
+                <TableCell align="left">
+                  <b>Username</b>
+                </TableCell>
+                <TableCell align="left">
+                  <b>Email</b>
+                </TableCell>
+                <TableCell align="left">
+                  <b>Password</b>
+                </TableCell>
+                <TableCell align="left">
+                  <b>Edit</b>
+                </TableCell>
+                <TableCell align="left">
+                  <b>Delete</b>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {user?.map((row, i) => (
+                <TableRow key={row.category}>
+                  <TableCell component="th" scope="row">
+                    {row.firstName}
+                  </TableCell>
+                  <TableCell align="left">{row.lastName}</TableCell>
+                  <TableCell align="left">{row.birthday}</TableCell>
+                  <TableCell align="left">{row.age}</TableCell>
+                  <TableCell align="left">{row.userName}</TableCell>
+                  <TableCell align="left">{row.email}</TableCell>
+                  <TableCell align="left">{row.password}</TableCell>
+                  <TableCell align="left">
+                    <Button
+                      onClick={() => {
+                        editUser(i);
+                      }}
+                    >
+                      <EditIcon style={{ color: "blue" }} />
+                    </Button>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Button
+                      onClick={() => {
+                        deleteUser(i);
+                      }}
+                    >
+                      <DeleteIcon style={{ color: "red" }} />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+    </Grid>
   );
 }

@@ -22,60 +22,59 @@ const useStyles = makeStyles({
 
 export default function CategoryList() {
   const classes = useStyles();
-  var {
-    categories,
-    deleteCategory,
-    editCategory,
-  } = React.useContext(ProductContext);
-  
+  var { categories, deleteCategory, editCategory } =
+    React.useContext(ProductContext);
+
   return (
-    <Grid item xs={12}>
-      <h1> Category List</h1>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                {" "}
-                <b>Category</b>
-              </TableCell>
-              <TableCell align="left">
-                <b>Edit</b>
-              </TableCell>
-              <TableCell align="left">
-                <b>Delete</b>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {categories?.map((row, i) => (
-              <TableRow key={row.category}>
-                <TableCell component="th" scope="row">
-                  {row.category}
+    <Grid container>
+      <Grid item xs={12}>
+        <h1> Category List</h1>
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  {" "}
+                  <b>Category</b>
                 </TableCell>
                 <TableCell align="left">
-                  <Button
-                    onClick={() => {
-                      editCategory(i);
-                    }}
-                  >
-                    <EditIcon style={{ color: "blue" }} />
-                  </Button>
+                  <b>Edit</b>
                 </TableCell>
                 <TableCell align="left">
-                  <Button
-                    onClick={() => {
-                      deleteCategory(i);
-                    }}
-                  >
-                    <DeleteIcon style={{ color: "red" }} />
-                  </Button>
+                  <b>Delete</b>
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {categories?.map((row, i) => (
+                <TableRow key={row.category}>
+                  <TableCell component="th" scope="row">
+                    {row.category}
+                  </TableCell>
+                  <TableCell align="left">
+                    <Button
+                      onClick={() => {
+                        editCategory(i);
+                      }}
+                    >
+                      <EditIcon style={{ color: "blue" }} />
+                    </Button>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Button
+                      onClick={() => {
+                        deleteCategory(i);
+                      }}
+                    >
+                      <DeleteIcon style={{ color: "red" }} />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
     </Grid>
   );
 }

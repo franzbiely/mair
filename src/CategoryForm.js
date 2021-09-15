@@ -17,23 +17,24 @@ const useStyles = makeStyles((theme) => ({
 
 function CategoryForm() {
   const classes = useStyles();
-  var { addCategory, category, setCategory, clearText, saveEditCategory, i } = React.useContext(ProductContext);
+  var { addCategory, category, setCategory, clearText, saveEditCategory, i } =
+    React.useContext(ProductContext);
 
   return (
-   
-        <Grid item xs={12}>
-          <div>
-            <h1>Category</h1>
-            <form className={classes.root} noValidate autoComplete="off">
-              <TextField
-                id="category"
-                label="Category"
-                type="text"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
-            </form>
-            <Box ml={-15} >
+    <Grid container>
+      <Grid item xs={12}>
+        <div>
+          <h1>Category</h1>
+          <form className={classes.root} noValidate autoComplete="off">
+            <TextField
+              id="category"
+              label="Category"
+              type="text"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </form>
+          <Box ml={-15}>
             <Button
               onClick={() => {
                 addCategory(category);
@@ -45,8 +46,8 @@ function CategoryForm() {
             >
               add category
             </Button>
-            </Box>
-            <Box ml={17} mt={-4.5}  >
+          </Box>
+          <Box ml={17} mt={-4.5}>
             <Button
               onClick={() => {
                 saveEditCategory(i);
@@ -56,11 +57,12 @@ function CategoryForm() {
               color="Secondary"
               className={classes.button}
             >
-              update 
+              update
             </Button>
-            </Box>
-          </div>
-        </Grid>
+          </Box>
+        </div>
+      </Grid>
+    </Grid>
   );
 }
 

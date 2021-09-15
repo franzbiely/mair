@@ -127,7 +127,7 @@ function User() {
                 />
                 <br />
               </form>
-              <Box mr={13}>
+              <Box mr={20}>
                 <Button
                   onClick={() => {
                     addUser(
@@ -145,7 +145,7 @@ function User() {
                   color="secondary"
                   className={classes.button}
                 >
-                  Log in
+                  Create User
                 </Button>
               </Box>
               <Box ml={14} mt={-4.5}>
