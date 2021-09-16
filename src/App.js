@@ -20,6 +20,8 @@ import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItem from "@material-ui/core/ListItem";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LogInForm from './LogInForm'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +82,30 @@ function App() {
     setAge("");
   };
 
+  // login
+  const [login, setLogin] = useState ([])
+  const [emaill, setEmaill] = useState("");
+  const [passwordd, setPasswordd] = useState("");
+  const clearTextfield = () => {
+    console.log(emaill, passwordd);
+    setEmaill("");
+    setPasswordd("");
+  };
+
   const providerValue = {
+
+    login,
+    addLogin:(emaill, passwordd) =>{
+      setLogin([{emaill,passwordd}])
+    },     
+
+    emaill, 
+    setEmaill, 
+    passwordd, 
+    setPasswordd,
+    clearTextfield,
+
+
     // USER
     user,
     addUser: (
@@ -217,12 +242,13 @@ function App() {
     },
     i,
   };
+
   return (
     <div className="App">
       <ProductContext.Provider value={providerValue}>
         <Router>
           <Grid container spacing={3}>
-            {/* <Paper className={classes.paper}> */}
+            <Paper className={classes.paper}>
               <Grid
                 direction="row"
                 justifyContent="flex-start"
@@ -274,12 +300,25 @@ function App() {
                           </ListItem>
                         </Link>
                       </Box>
+                      <Box mt={0}>
+                        <Link to="/logIn">
+                          <ListItem button>
+                            <ListItemIcon>
+                              <ExitToAppIcon
+                                fontSize="small"
+                                style={{ color: "red" }}
+                              />
+                            </ListItemIcon>
+                            <ListItemText primary="Logout" />
+                          </ListItem>
+                        </Link>
+                      </Box>
                       <br />
                     </List>
                   </div>
                 </Box>
               </Grid>
-            {/* </Paper> */}
+            </Paper>
             <Grid
               justifyContent="flex-end"
               alignItems="flex-start"
@@ -296,15 +335,19 @@ function App() {
                   <User />
                   <UserList />
                 </Route>
-
                 <Route path="/category">
                   <CategoryForm />
                   <CategoryList />
+                </Route>
+                <Route path="/login">
+                  <LogInForm />
                 </Route>
               </Switch>
             </Grid>
           </Grid>
         </Router>
+        
+        {/* <LogInForm/>   */}
       </ProductContext.Provider>
     </div>
   );

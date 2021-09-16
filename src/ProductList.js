@@ -44,9 +44,7 @@ export default function ProductList() {
     React.useContext(ProductContext);
 
   const totalProducts =
-    products.length < 1
-      ? 0
-      : products
+    products.length < 1 ? 0 : products
           .map((product) => {
             return parseInt(product.quantity);
           })
