@@ -1,0 +1,121 @@
+
+
+
+(product) => (
+
+)
+
+
+(product) => {
+    ma
+    return ()
+}
+  {({ products, setProducts }) => {
+        const totalProducts = products.map(product => {
+          // console.log({product})
+          return product.quantity;
+        });
+        console.log({ totalProducts });
+        return (
+          <Grid item xs={12}>
+
+          <ProductContext.Consumer>
+      {({ products, setProducts }) => {
+        const totalProducts = products.map(product => {
+          return parseInt(product.quantity);
+        }).reduce(function(name,quantity){return name,quantity }); 
+          console.log("total is : " + total );  
+
+          console.log('===== PLAYGROUND =========')
+
+// Map - buhat ug bagong array variable na lahi ang purma pero based xa sa X.
+
+const x = [{
+  name : "Manga",
+  quantity : 3
+},
+{
+  name : "Bayabas",
+  quantity: 4
+},
+{
+  name : "Melon",
+  quantity: 10
+}]
+
+// Expected
+// const y = [3, 4]
+
+// Exmple sa Mapping : 
+const y = x.map((currentX) => {
+  return currentX.quantity
+})
+console.log({y})
+
+// Filter - mag return ug bagong array na based sa X pero based sa condition.
+
+const z = x.filter((currentX) => {
+  return (currentX.name === "Manga")
+}).map((currentX) => {
+  return currentX.quantity
+})
+
+
+console.log({z})
+
+
+
+
+
+console.log('===== /PLAYGROUND =========')
+
+  // const [editableProducts, setEditableProducts] = useState({});
+  // const x = products
+  // setProducts("hello")
+
+  // console.log("==== Playground in App =====")
+
+  // const [fruits, setFruits] = useState([
+  //   {
+  //     name : "Manga",
+  //     quantity: 5
+  //   },
+  //   {
+  //     name : "grapes",
+  //     quantity : 10
+  //   }
+  // ]);
+
+  // const newFruit = {
+  //   name : "Bayabas",
+  //   quantity: 3
+  // }
+
+  // +
+
+  // {
+  //   name : "Bayabas",
+  //   quantity : 3
+  // }
+
+  // /*
+  // [   {name: "Manga", quanitty: 5},
+  // {name: "Grapes", quanitty: 10},
+  //     {
+  //       name : "Bayabas",
+  //       quantity: 3
+  //     }
+  //   ]
+  // */
+  // <button onClick={() => {
+  //   setFruits( [ ...fruits, {
+  //     name : "Bayabas",
+  //     quantity: 3
+  //   } ] )
+  // }}></button>
+
+  // console.log("==== /Playground in App =====")
+
+
+
+          

@@ -20,8 +20,8 @@ import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItem from "@material-ui/core/ListItem";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import LogInForm from './LogInForm'
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import LogInForm from "./LogInForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,7 +83,7 @@ function App() {
   };
 
   // login
-  const [login, setLogin] = useState ([])
+  const [login, setLogin] = useState([]);
   const [emaill, setEmaill] = useState("");
   const [passwordd, setPasswordd] = useState("");
   const clearTextfield = () => {
@@ -93,18 +93,16 @@ function App() {
   };
 
   const providerValue = {
-
     login,
-    addLogin:(emaill, passwordd) =>{
-      setLogin([{emaill,passwordd}])
-    },     
+    addLogin: (emaill, passwordd) => {
+      setLogin([{ emaill, passwordd }]);
+    },
 
-    emaill, 
-    setEmaill, 
-    passwordd, 
+    emaill,
+    setEmaill,
+    passwordd,
     setPasswordd,
     clearTextfield,
-
 
     // USER
     user,
@@ -346,7 +344,7 @@ function App() {
             </Grid>
           </Grid>
         </Router>
-        
+
         {/* <LogInForm/>   */}
       </ProductContext.Provider>
     </div>
